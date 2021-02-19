@@ -8,10 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -61,5 +58,16 @@ public class HeroController {
     public String details(@PathVariable Long id, Model model){
         model.addAttribute("hero",this.heroService.findHero(id));
         return "details-hero";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, Model model){
+        model.addAttribute("hero",this.heroService.findHero(id));
+        return "delete-hero";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteConfirm( @PathVariable Long id){
+       this.heroService.delete(this.heroService.findHero(id));
+        return "redirect:/";
     }
 }

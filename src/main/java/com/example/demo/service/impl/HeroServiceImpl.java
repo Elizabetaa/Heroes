@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.binding.HeroCreateBindingModel;
 import com.example.demo.model.entities.Hero;
 import com.example.demo.model.service.HeroCreateServiceModel;
 import com.example.demo.model.view.HeroView;
@@ -54,4 +55,10 @@ public class HeroServiceImpl implements HeroService {
     public HeroCreateServiceModel findHero(Long id) {
         return this.modelMapper.map(this.heroRepository.findById(id).orElse(null),HeroCreateServiceModel.class);
     }
+
+    @Override
+    public void delete(HeroCreateServiceModel heroCreateBindingModel) {
+        this.heroRepository.delete(this.modelMapper.map(heroCreateBindingModel, Hero.class));
+    }
+
 }
