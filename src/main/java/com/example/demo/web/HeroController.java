@@ -23,6 +23,7 @@ public class HeroController {
     private final HeroService heroService;
     private final CurrentUser currentUser;
 
+
     public HeroController(ModelMapper modelMapper, HeroService heroService, CurrentUser currentUser) {
         this.modelMapper = modelMapper;
         this.heroService = heroService;

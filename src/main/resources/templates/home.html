@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head::head" ></head>
+<head th:replace="fragments/head::head"></head>
 <body>
 <header th:replace="fragments/header::header"></header>
 <main>
     <div class="text-center mb-3">
-        <h4 class="text-white mt-2">Welcome to the arena, #{username}}</h4>
+        <h4 class="text-white mt-2" th:text="|Welcome to the arena, ${@currentUser.username}|"></h4>
     </div>
     <hr class="my-3"/>
+
     <div class="container">
-        <div class="row mb-4 d-flex justify-content-around">
-            <div class="col-md-3 d-flex flex-column text-center mb-3">
-                <img name="hreoImage.jpg" class="img-thumb" width="300" height="300"/>
-                <h5 class="text-white text-center">Warrior</h5>
-                <a class="btn btn-info mb-2">Details</a>
-                <a class="btn btn-danger">Delete</a>
-            </div>
-            <div class="col-md-3 d-flex flex-column text-center mb-3">
-                <img name="hreoImage.jpg" class="img-thumb" width="300" height="300"/>
-                <h5 class="text-white text-center">Rogue</h5>
-                <a class="btn btn-info mb-2">Details</a>
-                <a class="btn btn-danger">Delete</a>
-            </div>
-            <div class="col-md-3 d-flex flex-column text-center mb-3">
-                <img name="hreoImage.jpg" class="img-thumb" width="300" height="300"/>
-                <h5 class="text-white text-center">Mage</h5>
+        <div class="row mb-4 d-flex justify-content-around"  >
+            <div class="col-md-3 d-flex flex-column text-center mb-3" th:each="hero : ${heroes}" th:object="${hero}">
+                <img th:src="*{imgURL}" class="img-thumb" width="300" height="300"/>
+                <h5 th:text="*{heroName}" class="text-white text-center">Warrior</h5>
                 <a class="btn btn-info mb-2">Details</a>
                 <a class="btn btn-danger">Delete</a>
             </div>
         </div>
-        <div class="row mb-4 d-flex justify-content-around">
-            <div class="col-md-3 d-flex flex-column text-center mb-3">
-                <img name="hreoImage.jpg" class="img-thumb" width="300" height="300"/>
-                <h5 class="text-white text-center">Warrior</h5>
-                <a class="btn btn-info mb-2">Details</a>
-                <a class="btn btn-danger">Delete</a>
-            </div>
-        </div>
+
     </div>
+
 </main>
 <span style="visibility: hidden">...</span>
 <footer class="footer bg-dark  py-2" th:replace="fragments/footer::footer"></footer>
