@@ -9,4 +9,6 @@ public interface HeroService {
     void create(HeroCreateServiceModel heroCreateServiceModel);
 
     List<HeroView> findAll();
+
+    HeroCreateServiceModel findHero(Long id);
 }

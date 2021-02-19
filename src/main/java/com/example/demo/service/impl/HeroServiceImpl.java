@@ -49,4 +49,9 @@ public class HeroServiceImpl implements HeroService {
         });
         return heroViews;
     }
+
+    @Override
+    public HeroCreateServiceModel findHero(Long id) {
+        return this.modelMapper.map(this.heroRepository.findById(id).orElse(null),HeroCreateServiceModel.class);
+    }
 }
