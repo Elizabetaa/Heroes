@@ -16,6 +16,9 @@ public class HomeController {
     @GetMapping("/")
     public String home(){
 
-        return "index";
+        if (currentUser.isAnonymous()){
+            return "index";
+        }
+        return "home";
     }
 }
